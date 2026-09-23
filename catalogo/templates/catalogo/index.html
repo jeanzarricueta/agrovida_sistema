@@ -1,14 +1,35 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Catalogo AgroVida SpA</title>
+    <title>Catálogo | AgroVida SpA</title>
+    <link rel="stylesheet" href="{% static 'catalogo/css/catalogo.css' %}">
 </head>
 <body>
-    <h1>Catalogo de insumos agricolas</h1>
-    <table border="1">
-        thead>
+    <main class="page-shell">
+        <header class="hero">
+            <div class="brand-mark" aria-hidden="true">AV</div>
+            <div>
+                <p class="eyebrow">AgroVida SpA</p>
+                <h1>Catálogo de insumos agrícolas</h1>
+                <p class="intro">Soluciones confiables para cuidar y hacer crecer tus cultivos.</p>
+            </div>
+        </header>
+
+        <section class="catalog-section" aria-labelledby="catalog-title">
+            <div class="section-heading">
+                <div>
+                    <p class="section-kicker">Disponibilidad actual</p>
+                    <h2 id="catalog-title">Productos</h2>
+                </div>
+                <span class="product-count">{{ productos|length }} productos</span>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
             <tr>
                 <th>Nombre</th>
                 <th>Categoria</th>
@@ -21,11 +42,14 @@
             <tr>
                 <td>{{ producto.nombre }}</td>
                 <td>{{ producto.categoria }}</td>
-                <td>{{ producto.precio }}</td>
-                <td>{{ producto.stock }}</td>
+                <td class="price">$ {{ producto.precio }}</td>
+                <td><span class="stock">{{ producto.stock }} unidades</span></td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
+            </div>
+        </section>
+    </main>
 </body>
 </html>
